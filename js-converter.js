@@ -152,4 +152,8 @@ if (isSurge) {
 /************ CONVERTER END ********************/
 `;
 body = converter + "\n" + body;
-$done(body);
+if (isQX) {
+  $done(body);
+}else if(isSurge) {
+  $done({body});
+}
