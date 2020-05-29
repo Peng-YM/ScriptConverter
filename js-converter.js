@@ -6,7 +6,11 @@ let body = $response.body;
 isSurge = body.indexOf("$httpClient") != -1;
 isQX = body.indexOf("$task") != -1;
 if ((!isSurge && !isQX) || (isSurge && isQX)) {
-  $done(body);
+  if (isQX){
+    $done(body);
+  }else{
+    $done({body});
+  }
 }
 if (verbose) {
   console.log(`Starting to convert script at ${url}...`);
