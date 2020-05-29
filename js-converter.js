@@ -8,13 +8,13 @@ const url = $request.url;
 let body = $response.body;
 const isSurge = body.indexOf("$httpClient") !== -1;
 const isQX = body.indexOf("$task") !== -1;
-if (($task !== undefined && isQX) || ($httpClient !== undefined && isSurge)){
- console.log(`脚本已为${isQX ? "QX" : "Surge"}格式，无需转换`);
- $done({body});
-} else if ((!isSurge && !isQX) || (isSurge && isQX)) {
+if ((!isSurge && !isQX) || (isSurge && isQX)) {
  console.log(`脚本不含有需要转换的代码，无需转换`);
  $done({body});
-} else {
+}else if (($task !== undefined && isQX) || ($httpClient !== undefined && isSurge)){
+ console.log(`脚本已为${isQX ? "QX" : "Surge"}格式，无需转换`);
+ $done({body});
+}  else {
     console.log(`开始转换${isQX? "QX" : "Surge"}格式的脚本： ${url}...`);
 
     let converter = `
