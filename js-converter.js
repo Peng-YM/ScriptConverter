@@ -2,20 +2,15 @@
 const verbose = true;
 const url = $request.url;
 let body = $response.body;
-
 isSurge = body.indexOf("$httpClient") != -1;
 isQX = body.indexOf("$task") != -1;
 if ((!isSurge && !isQX) || (isSurge && isQX)) {
-  if (isQX){
-    $done(body);
-  }else{
-    $done({body});
-  }
+ $done({body});
 }
 if (verbose) {
-  console.log(`Starting to convert script at ${url}...`);
+  console.log(`开始转换${isQX? "QX" : "Surge"}格式的脚本： ${url}...`);
 }
-const converter = `
+let converter = `
 /********** CONVERTER START ********/
 // #region 固定头部
 let isQuantumultX = $task != undefined; //判断当前运行环境是否是qx
@@ -155,9 +150,9 @@ if (isSurge) {
 // #endregion
 /************ CONVERTER END ********************/
 `;
-body = converter + "\n" + body;
-if (isQX) {
-  $done(body);
-}else if(isSurge) {
-  $done({body});
+body = converter + "\n" + String(body);
+
+$done({body});
+if (verbose) {
+    console.log("转换成功");
 }
