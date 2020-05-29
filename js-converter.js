@@ -1,15 +1,25 @@
 // 是否开启输出
 const verbose = true;
+if(!verbose){
+    console.log = ()=>{}
+}
+
 const url = $request.url;
 let body = $response.body;
-isSurge = body.indexOf("$httpClient") != -1;
-isQX = body.indexOf("$task") != -1;
-if ((!isSurge && !isQX) || (isSurge && isQX)) {
+const isSurge = body.indexOf("$httpClient") !== -1;
+const isQX = body.indexOf("$task") !== -1;
+if (($task !== undefined && isQX) || ($httpClient !== undefined && isSurge)){
+ console.log(`脚本已为${isQX ? "QX" : "Surge"}格式，无需转换`);
  $done({body});
 }
-if (verbose) {
-  console.log(`开始转换${isQX? "QX" : "Surge"}格式的脚本： ${url}...`);
+
+if ((!isSurge && !isQX) || (isSurge && isQX)) {
+ console.log(`脚本不含有需要转换的代码，无需转换`);
+ $done({body});
 }
+
+console.log(`开始转换${isQX? "QX" : "Surge"}格式的脚本： ${url}...`);
+
 let converter = `
 /********** CONVERTER START ********/
 // #region 固定头部
@@ -151,8 +161,5 @@ if (isSurge) {
 /************ CONVERTER END ********************/
 `;
 body = converter + "\n" + String(body);
-
+console.log("转换成功");
 $done({body});
-if (verbose) {
-    console.log("转换成功");
-}
