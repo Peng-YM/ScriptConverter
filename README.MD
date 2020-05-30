@@ -8,7 +8,7 @@
 ```
 [rewrite-local]
 # 脚本转换器
-^https?:\/\/(raw|gist)\.githubusercontent.com/.*\.js url script-response-body https://raw.githubusercontent.com/Peng-YM/ScriptConverter/master/js-converter.js
+^https?:\/\/(raw|gist)\.githubusercontent.com/.*\.js$ url script-response-body https://raw.githubusercontent.com/Peng-YM/ScriptConverter/master/js-converter.js
 
 [mitm]
 hostname=raw.githubusercontent.com, gist.githubusercontent.com
@@ -16,7 +16,7 @@ hostname=raw.githubusercontent.com, gist.githubusercontent.com
 ### 2. Surge & Loon
 ```
 [Script]
-http-response ^https?:\/\/(raw|gist)\.githubusercontent.com/.*\.js script-path=https://raw.githubusercontent.com/Peng-YM/ScriptConverter/master/js-converter.js, requires-body = true
+http-response ^https?:\/\/(raw|gist)\.githubusercontent.com/.*\.js$ script-path=https://raw.githubusercontent.com/Peng-YM/ScriptConverter/master/js-converter.js, requires-body = true
 
 [MITM]
 hostname=raw.githubusercontent.com, gist.githubusercontent.com
