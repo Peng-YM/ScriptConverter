@@ -20,7 +20,6 @@ http-response ^https?:\/\/(raw|gist)\.githubusercontent.com/.*\.js$ script-path=
 
 [MITM]
 hostname=raw.githubusercontent.com, gist.githubusercontent.com
-
 ```
 ## 好，我做完了？然后呢？
 ### 检验一下！
