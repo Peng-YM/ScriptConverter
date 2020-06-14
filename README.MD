@@ -27,4 +27,3 @@ hostname=raw.githubusercontent.com, gist.githubusercontent.com
 把上面的脚本添加到软件中后，怎么看是否成功加载转换器呢？这里提供了一个例子：
 1. 点击[这个](https://github.com/Peng-YM/ScriptConverter/blob/master/zongheng.js)链接。可以看到这个脚本是QX专用的，并没有对Surge & Loon做适配。
 2. 再点击[这个](https://raw.githubusercontent.com/Peng-YM/ScriptConverter/master/zongheng.js)链接。这个其实是之前打开的脚本的raw链接，此时应该能看到转换代码已经被注入到文件头部了，这说明该脚本已经可以用到Surge&Loon中了。如果你看到的文件内容和原来的一样，请再仔细检查配置是否有问题。
-
