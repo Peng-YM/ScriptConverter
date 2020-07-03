@@ -4,7 +4,7 @@
 ## 原理
 原理非常简单，通过MITM将所有向raw.githubusercontent.com的js请求拦截，然后将转换脚本添加到返回js脚本中。
 ## 用法
-### 1. QX TF
+### 1. QX [失效]
 ```
 [rewrite-local]
 # 脚本转换器
